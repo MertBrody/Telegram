@@ -1,4 +1,7 @@
 <?php
+echo "Lütfen video URL'sini girin: ";
+$video_url = trim(fgets(STDIN));
+
 function download_video($url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -10,7 +13,6 @@ function download_video($url) {
     return $result;
 }
 
-$video_url = 'https://www.tiktok.com/@username/video/videoID'; // TikTok video URL
 $video_data = download_video($video_url);
 
 file_put_contents('video.mp4', $video_data);
