@@ -18,8 +18,8 @@ $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 
 if ($result === FALSE) {
-    echo "Mesaj gönderme başarısız.";
+    echo "Mesaj gönderme başarısız. Hata: " . print_r(error_get_last(), true);
 } else {
     echo "Mesaj başarıyla gönderildi.";
 }
-?>
+?
