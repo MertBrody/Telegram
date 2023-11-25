@@ -22,4 +22,4 @@ if ($result === FALSE) {
 } else {
     echo "Mesaj başarıyla gönderildi.";
 }
-?
+?>
