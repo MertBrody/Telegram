@@ -8,9 +8,9 @@ $data = array('chat_id' => $chat_id, 'text' => $message);
 
 $options = array(
     'http' => array(
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'header'  => "Content-type: application/json\r\n",
         'method'  => 'POST',
-        'content' => json_encode($data), // Değişiklik burada
+        'content' => json_encode($data),
     ),
 );
 
