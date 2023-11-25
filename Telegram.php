@@ -3,23 +3,23 @@ $token = "6519976251:AAFYccpWtDs5p-lMJKteyquiEEPFtN1ouak";
 $chat_id = "6225633981";
 $message = "Merhaba, bu bir test mesajıdır.";
 
-$api_url = "https://api.telegram.org/bot{$token}/sendMessage";
-$params = [
-    'chat_id' => $chat_id,
-    'text' => $message,
-];
+$url = "https://api.telegram.org/bot$token/sendMessage";
+$data = array('chat_id' => $chat_id, 'text' => $message);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $api_url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-curl_close($ch);
+$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($data),
+    ),
+);
 
-if ($response === false) {
-    echo "Bağlantı hatası! Şeytanın gücü belki de zayıfladı...";
+$context  = stream_context_create($options);
+$result = file_get_contents($url, false, $context);
+
+if ($result === FALSE) {
+    echo "Mesaj gönderme başarısız.";
 } else {
-    echo "Başarıyla kaos ekildi!";
+    echo "Mesaj başarıyla gönderildi.";
 }
 ?>
