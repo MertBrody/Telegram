@@ -1,8 +1,10 @@
 <?php
-$token = "6519976251:AAFYccpWtDs5p-lMJKteyquiEEPFtN1ouak";
-$chat_id = "6225633981";
-$message = "Merhaba, bu bir test mesajıdır.";
+// Kullanıcıdan girişleri al
+$token = readline("Bot Token'ınızı girin: ");
+$chat_id = readline("Chat ID'yi girin: ");
+$message = readline("Gönderilecek Mesajı girin: ");
 
+// Telegram API için isteği hazırla
 $url = "https://api.telegram.org/bot$token/sendMessage";
 $data = array('chat_id' => $chat_id, 'text' => $message);
 
@@ -14,6 +16,7 @@ $options = array(
     ),
 );
 
+// API'ye isteği gönder ve sonucu kontrol et
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 
